@@ -28,6 +28,14 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+        
+      - name: Create prod appsettings.json
+        run: |
+          echo '{
+            "ConnectionStrings": {
+              "DefaultConnection": "'"${{ secrets.DEFAULTCONNECTION }}"'"
+            }
+          }' > appsettings.Production.json
 
       - name: Build, Tag, Push Backend Image
         env:
