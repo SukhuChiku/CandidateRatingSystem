@@ -2,6 +2,9 @@
   "family": "backend-taskdef",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
+  "environment": [
+    { "name": "ASPNETCORE_ENVIRONMENT", "value": "Production" }
+  ],
   "cpu": "256",
   "memory": "512",
   "executionRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
