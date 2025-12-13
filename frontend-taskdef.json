@@ -5,6 +5,10 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
+   "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
   "executionRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
   "taskRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -12,8 +16,30 @@
       "name": "candidateratingfrontendcontainer",
       "image": "REPLACE_ME",
       "essential": true,
+      "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/frontend-taskdef",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
       "portMappings": [
-        { "containerPort": 80 }
+        { 
+        "appProtocol": "http",
+        "containerPort": 80,
+        "hostPort": 80,
+        "name": "candidateratingfrontendcontainer-80-tcp",
+        "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "REACT_APP_API_BASE_URL",
+          "value": "http://candidatebackend-1759328448.us-west-1.elb.amazonaws.com/"
+        }
       ]
     }
   ]
