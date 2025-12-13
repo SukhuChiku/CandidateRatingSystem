@@ -16,16 +16,6 @@
       "name": "candidateratingfrontendcontainer",
       "image": "REPLACE_ME",
       "essential": true,
-      "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "/ecs/frontend-taskdef",
-                    "awslogs-create-group": "true",
-                    "awslogs-region": "us-west-1",
-                    "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
-            },
       "portMappings": [
         { 
         "appProtocol": "http",
