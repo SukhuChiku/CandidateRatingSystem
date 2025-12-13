@@ -5,6 +5,10 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
   "executionRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
   "taskRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
   "containerDefinitions": [
@@ -12,6 +16,16 @@
       "name": "candidateratingbackendcontainer",
       "image": "REPLACE_ME",
       "essential": true,
+      "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/backend-taskdef",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
       "portMappings": [
         {
           "appProtocol": "http",
