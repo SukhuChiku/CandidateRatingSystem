@@ -31,7 +31,6 @@ const Candidates = ({ classes, ...props }) => {
      <div>
             <Grid container  paddingRight={30} paddingLeft={40} paddingTop={10}  ref={EditRef} >
                 <Grid >
-                    <h1>WELOME!</h1>
                     <CandidateForm {...({ currentId, setCurrentId })} scrollToTable={scrollToTable}  />
                 </Grid>
             </Grid>
