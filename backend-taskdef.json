@@ -14,13 +14,21 @@
       "essential": true,
       "portMappings": [
         {
-          "containerPort": 8080
+          "appProtocol": "http",
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "name": "candidateratingbackendcontainer-8080-tcp",
+          "protocol": "tcp"
         }
       ],
       "environment": [
         {
           "name": "ASPNETCORE_ENVIRONMENT",
           "value": "Production"
+        },
+        {
+          "name": "ConnectionStrings__DefaultConnection",
+          "value": "Host=candidateratingsystem.czyiu0yusyb7.us-west-1.rds.amazonaws.com;Port=5432;Database=CandidateRatingSystem;Username=postgres;Password=Moramusuvima*62"
         }
       ]
     }
