@@ -29,9 +29,12 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
         
-      - name: Create .env.production
+      - name: Build React App
         run: |
-           echo "REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }}" > applicantratingfrontend/.env.production
+          cd applicantratingfrontend
+          echo "REACT_APP_API_BASE_URL=http://candidatebackend-1759328448.us-west-1.elb.amazonaws.com/" > .env.production
+          npm install
+          npm run build
 
       - name: Build, Tag, Push Frontend Image
         env:
