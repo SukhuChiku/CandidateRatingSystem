@@ -33,7 +33,7 @@ jobs:
         run: |
           echo '{
             "ConnectionStrings": {
-              "DefaultConnection": "'"${{ secrets.DEFAULTCONNECTION }}"'"
+              "DefaultConnection": "'"${{ secrets.CONNECTIONSTRINGS__DEFAULTCONNECTION}}"'"
             }
           }' > appsettings.Production.json
 
@@ -52,7 +52,7 @@ jobs:
         with:
           task-definition: backend-taskdef.json
           container-name: candidateratingbackendcontainer
-          image: ${{ steps.login-ecr.outputs.registry }}/candidateratingbackendcontainer:latest
+          image: ${{ steps.login-ecr.outputs.registry }}/candidateratingbackend:latest
 
       - name: Deploy to ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
