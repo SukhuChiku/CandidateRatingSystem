@@ -2,9 +2,6 @@
   "family": "backend-taskdef",
   "networkMode": "awsvpc",
   "requiresCompatibilities": ["FARGATE"],
-  "environment": [
-    { "name": "ASPNETCORE_ENVIRONMENT", "value": "Production" }
-  ],
   "cpu": "256",
   "memory": "512",
   "executionRoleArn": "arn:aws:iam::820477575711:role/ecsTaskExecutionRole",
@@ -15,7 +12,15 @@
       "image": "REPLACE_ME",
       "essential": true,
       "portMappings": [
-        { "containerPort": 8080}
+        {
+          "containerPort": 8080
+        }
+      ],
+      "environment": [
+        {
+          "name": "ASPNETCORE_ENVIRONMENT",
+          "value": "Production"
+        }
       ]
     }
   ]
