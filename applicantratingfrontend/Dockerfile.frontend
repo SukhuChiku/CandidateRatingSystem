@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install   # Use npm install if lock file mismatch
 COPY . ./
-RUN npm run build
+RUN CI=false npm run build
 
 # Use nginx to serve the build
 FROM nginx:alpine

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react"
 import {
   Grid,
   TextField,
@@ -12,7 +12,7 @@ import {
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../actions/Candidate";
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const initialFieldValues = {

@@ -1,7 +1,4 @@
-import { Candidate } from "../reducer/Candidate";
 
-import { fetchAll } from "./Candidate";
-import axios from "axios";
 import base from "./api/axios";
 
 

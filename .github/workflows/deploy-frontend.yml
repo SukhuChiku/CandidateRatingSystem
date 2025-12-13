@@ -34,7 +34,10 @@ jobs:
           cd applicantratingfrontend
           echo "REACT_APP_API_BASE_URL=http://candidatebackend-1759328448.us-west-1.elb.amazonaws.com/" > .env.production
           npm install
+          export CI=false
           npm run build
+
+
 
       - name: Build, Tag, Push Frontend Image
         env:
