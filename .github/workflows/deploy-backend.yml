@@ -51,8 +51,8 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: backend-taskdef.json
-          container-name: candidateratingbackend
-          image: ${{ steps.login-ecr.outputs.registry }}/candidateratingbackend:latest
+          container-name: candidateratingbackendcontainer
+          image: ${{ steps.login-ecr.outputs.registry }}/candidateratingbackendcontainer:latest
 
       - name: Deploy to ECS Service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
