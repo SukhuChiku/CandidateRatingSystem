@@ -29,12 +29,15 @@ namespace ApplicantRatingSystem.Controllers
         {
             var candidates = await _context.Candidates.ToListAsync();
             var result = new List<CandidateDTO>();
-            int repoCount = 0;
+
             foreach (var c in candidates)
             {
-                if (!String.IsNullOrEmpty(c.GithubLink))
+                int repoCount = 0; //reset per candidate
+
+                var githubUser = ExtractGithubUser(c.GithubLink);
+
+                if (!string.IsNullOrEmpty(githubUser))
                 {
-                    var githubUser = ExtractGithubUser(c.GithubLink);
                     repoCount = await _gitHubService.GetRepoCountAsync(githubUser);
                 }
 
@@ -56,12 +59,26 @@ namespace ApplicantRatingSystem.Controllers
             return Ok(result);
         }
 
-        private string ExtractGithubUser(string link)
-        {
-            var uri = new Uri(link);
-            string username = uri.AbsolutePath.Trim('/').Split('/')[0];
-            return username;
-        }
+
+    private string? ExtractGithubUser(string? link)
+    {
+        if (string.IsNullOrWhiteSpace(link))
+            return null;
+
+        // If user saved just the username (e.g. "jamesscholes")
+        if (!link.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            return link.Trim();
+
+        if (!Uri.TryCreate(link, UriKind.Absolute, out var uri))
+            return null;
+
+        var segments = uri.AbsolutePath
+            .Trim('/')
+            .Split('/', StringSplitOptions.RemoveEmptyEntries);
+
+        return segments.Length > 0 ? segments[0] : null;
+    }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Candidate>> GetCandidate(int id)
