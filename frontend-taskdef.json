@@ -24,12 +24,6 @@
         "name": "candidateratingfrontendcontainer-80-tcp",
         "protocol": "tcp"
         }
-      ],
-      "environment": [
-        {
-          "name": "REACT_APP_API_BASE_URL",
-          "value": "http://candidatebackend-1759328448.us-west-1.elb.amazonaws.com/"
-        }
       ]
     }
   ]
