@@ -33,7 +33,7 @@ jobs:
         run: |
           echo '{
             "ConnectionStrings": {
-              "DefaultConnection": "'"${{ secrets.CONNECTIONSTRINGS__DEFAULTCONNECTION}}"'"
+              "DefaultConnection": "'"${{ secrets.DEFAULTCONNECTION}}"'"
             }
           }' > appsettings.Production.json
 
